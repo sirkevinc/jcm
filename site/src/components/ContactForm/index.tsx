@@ -2,6 +2,7 @@ import 'antd/dist/antd.css';
 import React from "react";
 import { Row, Col, Button, Form, Input } from "antd"
 import { UserOutlined, MailOutlined } from "@ant-design/icons"
+
 const { TextArea } = Input
 
 function encode(data: any) {
@@ -13,14 +14,14 @@ function encode(data: any) {
 const ContactForm = () => {
     const formName = "contact"
 
-    const handleSubmit = (values: any) => {
+    const handleSubmit = ({ values }: any) => {
         if (values['bot-field'] === undefined) {
             delete values['bot-field']
         }
 
         fetch("/", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded"},
+            headers: { "Content-Type": `application/x-www-form-urlencoded` },
             body: encode({
                 "form-name": formName,
                 ...values,
@@ -48,12 +49,28 @@ const ContactForm = () => {
                 md={16}
                 lg={8}
             >
+                {/* 
+                    Defines how form is set up for Netlify form bot 
+                */}
+                <form
+                    name={formName}
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    hidden
+                >
+                    <input type="text" name="name" />
+                    <input type="email" name="email" />
+                    <textarea name="message"></textarea>
+                </form>
                 <Form
                     name="contactForm"
                     method="post"
                     onFinish={handleSubmit}
                     layout="vertical"
                 >
+                    {/*
+                        Hidden field that Netlify uses
+                    */}
                     <Form.Item
                         label="Don't fill this out"
                         className={"hidden"}
@@ -103,16 +120,6 @@ const ContactForm = () => {
                     </Form.Item>
 
                 </Form>
-                <form
-                    name={formName}
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
-                    hidden
-                >
-                    <input type="text" name="name" />
-                    <input type="email" name="email" />
-                    <textarea name="message"></textarea>
-                </form>
             </Col>
         </Row>
     )
