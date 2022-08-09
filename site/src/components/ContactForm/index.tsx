@@ -14,7 +14,7 @@ function encode(data: any) {
 const ContactForm = () => {
     const formName = "contact"
 
-    const handleSubmit = ({ values }: any) => {
+    const handleSubmit = (values: any) => {
         if (values['bot-field'] === undefined) {
             delete values['bot-field']
         }
