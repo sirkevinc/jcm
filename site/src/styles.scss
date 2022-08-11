@@ -61,11 +61,12 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
+    max-height: 600px;
 }
 
 .main__banner img {
-    // height: auto;
-    width: 85%;
+    height: auto;
+    max-width: 85%;
 }
 
 .image__overlay {
@@ -109,7 +110,7 @@ main {
 
 .about__image {
     width: 85%;
-    max-height: 715px;
+    max-height: 700px;
 }
 
 .approach__container {
@@ -179,10 +180,11 @@ footer span {
     margin: auto;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
 
     .main__banner img {
         width: 100%;
+        max-width: 100%;
     }
     .image__overlay {
         width: 85%;
