@@ -9,7 +9,9 @@ const About = () => {
         <Layout>
             <Head title="About" />
             <div className="about__container">
-                <img className="about__image" src={AboutImage} />
+                <div className="about__banner">
+                    <img className="about__image" src={AboutImage} />
+                </div>
                 <div className="content">
                     <h2>About Jangi Consulting Management</h2>
                     <p>We're centered on what's best for you and your business</p>
